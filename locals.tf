@@ -7,4 +7,12 @@ locals {
       request_headers = { Accept = "text/plain; charset=utf-8" }
     }
   }
+
+  privatelink_dns = {
+    "privatelink-monitor-azure-com"             = "privatelink.monitor.azure.com",
+    "privatelink-oms-opinsights-azure-com"      = "privatelink.oms.opinsights.azure.com",
+    "privatelink-ods-opinsights-azure-com"      = "privatelink.ods.opinsights.azure.com",
+    "privatelink-agentsvc-azure-automation-net" = "privatelink.agentsvc.azure-automation.net",
+    "privatelink-blob-core-windows-net"         = "privatelink.blob.core.windows.net"
+  }
 }

@@ -55,7 +55,7 @@ variable "hpcc" {
   }
 }
 
-# variable "subnet_id" {
-#   description = "The subnet ID of the VNet from which adresses must be allocated."
-#   type        = string
-# }
+variable "subnet_id" {
+  description = "The subnet ID of the VNet from which adresses must be allocated."
+  type        = string
+}
