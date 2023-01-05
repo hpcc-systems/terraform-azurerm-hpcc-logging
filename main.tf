@@ -20,7 +20,7 @@ resource "azurerm_log_analytics_workspace" "hpcc" {
   tags                               = var.azure_log_analytics_workspace.tags
 }
 
-resource "kubernetes_secret" "log-analytics-workspace" {
+resource "kubernetes_secret" "azure_log_analytics_workspace" {
 
   metadata {
     name      = "azure-logaccess"
@@ -38,7 +38,7 @@ resource "kubernetes_secret" "log-analytics-workspace" {
   type = "kubernetes.io/generic"
 }
 
-resource "azurerm_role_assignment" "log_analytics_workspace" {
+resource "azurerm_role_assignment" "azure_log_analytics_workspace" {
 
   scope                = data.azurerm_subscription.current.id
   role_definition_name = "Log Analytics Contributor"
@@ -87,4 +87,13 @@ resource "azurerm_private_endpoint" "azure_log_analytics_workspace" {
     name                 = "default"
     private_dns_zone_ids = [for v in azurerm_private_dns_zone.azure_log_analytics_workspace : v.id]
   }
+}
+
+resource "azurerm_log_analytics_linked_storage_account" "azure_log_analytics_workspace" {
+  count = var.azure_log_analytics_workspace.linked_storage_account != null ? 1 : 0
+
+  data_source_type      = var.azure_log_analytics_workspace.linked_storage_account.data_source_type
+  resource_group_name   = var.azure_log_analytics_workspace.use_existing_workspace == null ? var.azure_log_analytics_workspace.resource_group_name : var.azure_log_analytics_workspace.use_existing_workspace.resource_group_name
+  workspace_resource_id = var.azure_log_analytics_workspace.use_existing_workspace != null ? data.azurerm_log_analytics_workspace.hpcc[0].id : azurerm_log_analytics_workspace.hpcc[0].id
+  storage_account_ids   = var.azure_log_analytics_workspace.linked_storage_account.storage_account_ids
 }

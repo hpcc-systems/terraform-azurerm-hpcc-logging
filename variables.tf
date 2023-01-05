@@ -16,6 +16,10 @@ variable "azure_log_analytics_workspace" {
       name                = string
       resource_group_name = string
     }))
+    linked_storage_account = optional(object({
+      data_source_type    = string
+      storage_account_ids = list(string)
+    }))
   })
 
   default = {
