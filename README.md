@@ -4,11 +4,9 @@ This module provides log solutions for the HPCC Platform.
 <br/>
 
 ## Requirements
+This module requires a running Azure Kubernetes Service before deployment.
 <br/>
-
-### This module requires a running Azure Kubernetes Service before deployment.
 <br/>
-
 ## Inputs
 <br/>
 
