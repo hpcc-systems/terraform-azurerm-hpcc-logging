@@ -14,8 +14,8 @@ resource "azurerm_log_analytics_workspace" "hpcc" {
   sku                                = var.azure_log_analytics_workspace.sku
   retention_in_days                  = var.azure_log_analytics_workspace.retention_in_days
   daily_quota_gb                     = var.azure_log_analytics_workspace.daily_quota_gb
-  internet_ingestion_enabled         = can(var.azure_log_analytics_workspace.internet_ingestion_enabled) ? var.azure_log_analytics_workspace.internet_ingestion_enabled : false
-  internet_query_enabled             = can(var.azure_log_analytics_workspace.internet_query_enabled) ? var.azure_log_analytics_workspace.internet_query_enabled : false
+  internet_ingestion_enabled         = var.azure_log_analytics_workspace.internet_ingestion_enabled != null ? var.azure_log_analytics_workspace.internet_ingestion_enabled : false
+  internet_query_enabled             = var.azure_log_analytics_workspace.internet_query_enabled != null ? var.azure_log_analytics_workspace.internet_query_enabled : false
   reservation_capacity_in_gb_per_day = var.azure_log_analytics_workspace.reservation_capacity_in_gb_per_day
   tags                               = var.azure_log_analytics_workspace.tags
 }
