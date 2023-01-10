@@ -22,15 +22,7 @@ variable "azure_log_analytics_workspace" {
     }))
   })
 
-  default = {
-    internet_ingestion_enabled         = false
-    location                           = null
-    internet_query_enabled             = false
-    unique_name                        = false
-    name                               = "my-hpcc-log-analytics-workspace"
-    reservation_capacity_in_gb_per_day = 100
-    resource_group_name                = null
-  }
+  default = null
 }
 
 variable "azure_log_analytics_creds" {
