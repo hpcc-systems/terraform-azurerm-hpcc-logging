@@ -2,10 +2,10 @@ variable "azure_log_analytics_workspace" {
   description = "Azure log analytics workspace attributes"
   type = object({
     name                               = string
-    unique_name                        = bool
+    unique_name                        = optional(bool)
     daily_quota_gb                     = optional(number) // -1 (unlimited)
-    internet_ingestion_enabled         = bool
-    internet_query_enabled             = bool
+    internet_ingestion_enabled         = optional(bool)
+    internet_query_enabled             = optional(bool)
     location                           = string
     reservation_capacity_in_gb_per_day = optional(number) // Must be increments of 100 between 100 and 5000
     resource_group_name                = string

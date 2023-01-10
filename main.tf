@@ -1,5 +1,5 @@
 resource "random_string" "random" {
-  count = can(var.azure_log_analytics_workspace.use_existing_workspace) ? 0 : 1
+  count = can(var.azure_log_analytics_workspace.unique_name == true) ? 1 : 0
 
   length  = 3
   special = false
@@ -14,8 +14,8 @@ resource "azurerm_log_analytics_workspace" "hpcc" {
   sku                                = var.azure_log_analytics_workspace.sku
   retention_in_days                  = var.azure_log_analytics_workspace.retention_in_days
   daily_quota_gb                     = var.azure_log_analytics_workspace.daily_quota_gb
-  internet_ingestion_enabled         = var.azure_log_analytics_workspace.internet_ingestion_enabled
-  internet_query_enabled             = var.azure_log_analytics_workspace.internet_query_enabled
+  internet_ingestion_enabled         = can(var.azure_log_analytics_workspace.internet_ingestion_enabled) ? var.azure_log_analytics_workspace.internet_ingestion_enabled : false
+  internet_query_enabled             = can(var.azure_log_analytics_workspace.internet_query_enabled) ? var.azure_log_analytics_workspace.internet_query_enabled : false
   reservation_capacity_in_gb_per_day = var.azure_log_analytics_workspace.reservation_capacity_in_gb_per_day
   tags                               = var.azure_log_analytics_workspace.tags
 }
