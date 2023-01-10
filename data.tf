@@ -14,7 +14,7 @@ data "http" "hpcc-logaccess" {
 }
 
 data "azurerm_log_analytics_workspace" "hpcc" {
-  count = var.azure_log_analytics_workspace.use_existing_workspace != null ? 1 : 0
+  count = can(var.azure_log_analytics_workspace.use_existing_workspace) ? 1 : 0
 
   name                = var.azure_log_analytics_workspace.use_existing_workspace.name
   resource_group_name = var.azure_log_analytics_workspace.use_existing_workspace.resource_group_name
