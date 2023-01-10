@@ -6,7 +6,7 @@ resource "random_string" "random" {
 }
 
 resource "azurerm_log_analytics_workspace" "hpcc" {
-  count = can(var.azure_log_analytics_workspace) && var.azure_log_analytics_workspace.use_existing_workspace == null ? 0 : 1
+  count = can(var.azure_log_analytics_workspace) && var.azure_log_analytics_workspace.use_existing_workspace == null ? 1 : 0
 
   name                               = can(var.azure_log_analytics_workspace.unique_name == true) ? "${var.azure_log_analytics_workspace.name}-${random_string.random[0].result}" : var.azure_log_analytics_workspace.name
   location                           = var.azure_log_analytics_workspace.location
@@ -53,7 +53,7 @@ resource "azurerm_monitor_private_link_scope" "azure_log_analytics_workspace" {
 }
 
 resource "azurerm_monitor_private_link_scoped_service" "azure_log_analytics_workspace" {
-  count = can(var.azure_log_analytics_workspace) && var.azure_log_analytics_workspace.use_existing_workspace == null ? 1:0
+  count = can(var.azure_log_analytics_workspace) && var.azure_log_analytics_workspace.use_existing_workspace == null ? 1 : 0
 
   name                = "${var.azure_log_analytics_workspace.name}-amplsservice"
   resource_group_name = var.azure_log_analytics_workspace.resource_group_name
@@ -62,14 +62,14 @@ resource "azurerm_monitor_private_link_scoped_service" "azure_log_analytics_work
 }
 
 resource "azurerm_private_dns_zone" "azure_log_analytics_workspace" {
-  for_each = can(var.azure_log_analytics_workspace) && var.azure_log_analytics_workspace.use_existing_workspace == null  ? local.privatelink_dns : {}
+  for_each = can(var.azure_log_analytics_workspace) && var.azure_log_analytics_workspace.use_existing_workspace == null ? local.privatelink_dns : {}
 
   name                = each.value
   resource_group_name = var.azure_log_analytics_workspace.resource_group_name
 }
 
 resource "azurerm_private_endpoint" "azure_log_analytics_workspace" {
-  count = can(var.azure_log_analytics_workspace) && var.azure_log_analytics_workspace.use_existing_workspace == null ?1:0
+  count = can(var.azure_log_analytics_workspace) && var.azure_log_analytics_workspace.use_existing_workspace == null ? 1 : 0
 
   name                = "${var.azure_log_analytics_workspace.name}-endpoint"
   location            = var.azure_log_analytics_workspace.location //must be same as VNet
