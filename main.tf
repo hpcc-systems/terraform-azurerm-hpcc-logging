@@ -87,6 +87,10 @@ resource "azurerm_private_endpoint" "azure_log_analytics_workspace" {
     name                 = "default"
     private_dns_zone_ids = [for v in azurerm_private_dns_zone.azure_log_analytics_workspace : v.id]
   }
+
+  depends_on = [
+    azurerm_private_dns_zone.azure_log_analytics_workspace
+  ]
 }
 
 resource "azurerm_log_analytics_linked_storage_account" "azure_log_analytics_workspace" {
