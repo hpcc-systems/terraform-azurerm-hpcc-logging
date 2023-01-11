@@ -15,4 +15,6 @@ locals {
     "privatelink-agentsvc-azure-automation-net" = "privatelink.agentsvc.azure-automation.net",
     "privatelink-blob-core-windows-net"         = "privatelink.blob.core.windows.net"
   }
+
+  private_connection = var.azure_log_analytics_workspace.internet_ingestion_enabled == false || var.azure_log_analytics_workspace.internet_query_enabled == false ? true : false
 }

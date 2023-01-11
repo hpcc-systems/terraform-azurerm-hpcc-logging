@@ -65,10 +65,10 @@ This module requires a running Azure Kubernetes Service before deployment.
 
 `hpcc` object specification
 
-| **Variable** | **Description**            | **Type** | **Default** | **Required** |
-| :----------- | :------------------------- | :------- | :---------- | :----------- |
-| `namespace`  | Namespace name.            | `string` | `hpcc`      | `yes`        |
-| `version`    | The HPCC Platform version. | `string` | `8.10.10`   | `yes`        |
+| **Variable** | **Description**                                                                        | **Type** | **Default** | **Required** |
+| :----------- | :------------------------------------------------------------------------------------- | :------- | :---------- | :----------- |
+| `namespace`  | Namespace name. This must be the namespace where HPCC Platform is or will be deployed. | `string` | `hpcc`      | `yes`        |
+| `version`    | The HPCC Platform version.                                                             | `string` | `8.10.10`   | `yes`        |
 <br/>
 
 ### Single Input Variables
