@@ -14,7 +14,9 @@ metadata = {
 location = "eastus2"
 
 azure_log_analytics_workspace = {
-  name = "my-hpcc-log-analytics-workspace"
+  name                       = "my-hpcc-log-analytics-workspace"
+  internet_query_enabled     = true
+  internet_ingestion_enabled = true
   tags = {
     "app" = "hpcc"
   }

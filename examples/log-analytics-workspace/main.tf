@@ -47,7 +47,7 @@ module "azure_log_analytics_workspace" {
   source = "../terraform-azurerm-hpcc-logging"
 
   azure_log_analytics_workspace = {
-    unique_name                        = true //var.azure_log_analytics_workspace.unique_name
+    unique_name                        = true
     daily_quota_gb                     = var.azure_log_analytics_workspace.daily_quota_gb
     internet_ingestion_enabled         = var.azure_log_analytics_workspace.internet_ingestion_enabled
     internet_query_enabled             = var.azure_log_analytics_workspace.internet_query_enabled
@@ -61,7 +61,7 @@ module "azure_log_analytics_workspace" {
     tags                               = var.azure_log_analytics_workspace.tags
   }
 
-  // Should be set as an environment variable 
+  // Should be set as an environment variable or stored in a key vault
   azure_log_analytics_creds = {
     AAD_CLIENT_ID     = var.azure_log_analytics_creds.AAD_CLIENT_ID
     AAD_CLIENT_SECRET = var.azure_log_analytics_creds.AAD_CLIENT_SECRET

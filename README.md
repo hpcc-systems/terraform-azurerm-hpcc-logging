@@ -4,10 +4,15 @@ This module provides log solutions for the HPCC Platform.
 <br/>
 
 ## Requirements
-This module requires a running Azure Kubernetes Service before deployment.
+This module requires a running Azure Kubernetes Service.
+To avoid create a cycle, first, deploy your Azure Kubernetes Service cluster before attempting to deploy this module.
 <br/>
+
+## Limitations
+* Private connection is not yet supported. `internet_query_enabled` and `internet_ingestion_enabled` must be set to true.
 <br/>
-## Inputs
+
+## Input variables
 <br/>
 
 ### Appendix A
@@ -79,13 +84,13 @@ This module requires a running Azure Kubernetes Service before deployment.
 <br/>
 
 ## Outputs
-| **Name**                                             | **Description**                                        |
-| :--------------------------------------------------- | :----------------------------------------------------- |
-| `log_analytics_hpcc_logaccess_body`                  | The HPCC log analytics yaml values                     |
-| `azure_log_analytics_workspace_resource_id`          | The resource ID of the analytics workspace ID          |
-| `azure_log_analytics_workspace_id`                   | The ID of the analytics workspace ID                   |
-| `azure_log_analytics_workspace_primary_shared_key`   | The Azure Log Analytics Workspace primary shared key   |
-| `azure_log_analytics_workspace_secondary_shared_key` | The Azure Log Analytics Workspace secondary shared key |
+| **Name**                                             | **Description**                                                                                                        |
+| :--------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| `log_analytics_hpcc_logaccess_body`                  | The HPCC log analytics yaml values to pass to the HPCC Platform helm deployment.                                       |
+| `azure_log_analytics_workspace_resource_id`          | The resource ID of the analytics workspace ID.                                                                         |
+| `azure_log_analytics_workspace_id`                   | The ID of the analytics workspace ID to assign to the AKS cluster. Valid format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx. |
+| `azure_log_analytics_workspace_primary_shared_key`   | The Azure Log Analytics Workspace primary shared key.                                                                  |
+| `azure_log_analytics_workspace_secondary_shared_key` | The Azure Log Analytics Workspace secondary shared key.                                                                |
 
 
 
