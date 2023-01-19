@@ -13,7 +13,7 @@ variable "metadata" {
     tags                = optional(map(string))
   })
 
-  nullable = false
+  default = null
 }
 
 variable "location" {
@@ -41,7 +41,10 @@ variable "azure_log_analytics_workspace" {
     }))
   })
 
-  default = null
+  default = {
+    name        = "my-hpcc-log-analytics-workspace"
+    unique_name = true
+  }
 }
 
 variable "azure_log_analytics_creds" {
@@ -54,7 +57,8 @@ variable "azure_log_analytics_creds" {
 
   })
   sensitive = true
-  nullable  = false
+
+  default = null
 }
 
 variable "hpcc" {
@@ -64,5 +68,8 @@ variable "hpcc" {
     namespace = string
   })
 
-  nullable = false
+  default = {
+    namespace = "default"
+    version   = "8.10.12-rc1"
+  }
 }

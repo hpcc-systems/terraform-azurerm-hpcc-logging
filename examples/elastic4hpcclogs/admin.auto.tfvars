@@ -21,8 +21,3 @@ azure_log_analytics_workspace = {
     "app" = "hpcc"
   }
 }
-
-hpcc = {
-  namespace = "default"
-  version = "8.12.0-rc2"
-}

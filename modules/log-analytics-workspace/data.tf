@@ -1,9 +1,7 @@
 data "http" "hpcc-logaccess" {
-  for_each = local.hpcc_logaccess
-
   method          = "GET"
-  request_headers = each.value.request_headers
-  url             = each.value.source
+  request_headers = local.logaccess_config.request_headers
+  url             = local.logaccess_config.source
 
   lifecycle {
     postcondition {
