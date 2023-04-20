@@ -12,6 +12,7 @@ variable "azure_log_analytics_workspace" {
     retention_in_days                  = optional(number) // Either 7 for free tier only or a range between 30 and 730
     sku                                = optional(string) // Free, PerNode, Premium, Standard, Standalone, Unlimited, CapacityReservation, PerGB2018
     tags                               = optional(map(string))
+    use_existing_role_assignment       = optional(bool, false)
     use_existing_workspace = optional(object({
       name                = string
       resource_group_name = string

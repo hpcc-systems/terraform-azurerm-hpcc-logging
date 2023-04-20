@@ -47,6 +47,7 @@ module "log-analytics-workspace" {
     sku                                = try(var.azure_log_analytics_workspace.sku, null)
     use_existing_workspace             = try(var.azure_log_analytics_workspace.use_existing_workspace, null)
     tags                               = try(var.azure_log_analytics_workspace.tags, null)
+    use_existing_role_assignment       = var.azure_log_analytics_workspace.use_existing_role_assignment
     use_existing_workspace             = var.azure_log_analytics_workspace.use_existing_workspace
     linked_storage_account             = var.azure_log_analytics_workspace.linked_storage_account
   }
