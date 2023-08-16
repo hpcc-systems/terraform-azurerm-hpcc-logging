@@ -1,7 +1,7 @@
 module "elastic4hpcclogs" {
   source = "./modules/elastic4hpcclogs"
 
-  count = var.elastic4hpcclogs != null && var.azure_log_analytics_workspace == null ? 1 : 0
+  count = var.azure_log_analytics_workspace == null ? 1 : 0
 
   elastic4hpcclogs = {
     internet_enabled           = var.elastic4hpcclogs.internet_enabled
