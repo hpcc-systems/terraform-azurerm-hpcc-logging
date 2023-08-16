@@ -53,12 +53,7 @@ module "log-analytics-workspace" {
   }
 
   // Should be set as an environment variable 
-  azure_log_analytics_creds = {
-    AAD_CLIENT_ID     = var.azure_log_analytics_creds.AAD_CLIENT_ID
-    AAD_CLIENT_SECRET = var.azure_log_analytics_creds.AAD_CLIENT_SECRET
-    AAD_TENANT_ID     = var.azure_log_analytics_creds.AAD_TENANT_ID
-    AAD_PRINCIPAL_ID  = var.azure_log_analytics_creds.AAD_PRINCIPAL_ID
-  }
+  azure_log_analytics_creds = var.azure_log_analytics_creds
 
   subnet_id = var.subnet_id
 
