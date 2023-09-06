@@ -38,6 +38,8 @@ resource "kubernetes_secret" "azure_log_analytics_workspace" {
 }
 
 resource "azurerm_role_assignment" "azure_log_analytics_workspace" {
+  count = var.azure_log_analytics_workspace.use_existing_role_assignment ? 0 : 1
+
   scope                = data.azurerm_subscription.current.id
   role_definition_name = "Log Analytics Contributor"
   principal_id         = var.azure_log_analytics_creds.AAD_PRINCIPAL_ID
@@ -64,7 +66,7 @@ resource "azurerm_private_dns_zone" "azure_log_analytics_workspace" {
 
   name                = each.value
   resource_group_name = var.azure_log_analytics_workspace.resource_group_name
-  tags                               = var.azure_log_analytics_workspace.tags
+  tags                = var.azure_log_analytics_workspace.tags
 }
 
 resource "azurerm_private_endpoint" "azure_log_analytics_workspace" {

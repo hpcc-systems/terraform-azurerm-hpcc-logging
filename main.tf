@@ -1,7 +1,7 @@
 module "elastic4hpcclogs" {
   source = "./modules/elastic4hpcclogs"
 
-  count = var.elastic4hpcclogs != null && var.azure_log_analytics_workspace == null ? 1 : 0
+  count = var.azure_log_analytics_workspace == null ? 1 : 0
 
   elastic4hpcclogs = {
     internet_enabled           = var.elastic4hpcclogs.internet_enabled
@@ -47,17 +47,13 @@ module "log-analytics-workspace" {
     sku                                = try(var.azure_log_analytics_workspace.sku, null)
     use_existing_workspace             = try(var.azure_log_analytics_workspace.use_existing_workspace, null)
     tags                               = try(var.azure_log_analytics_workspace.tags, null)
+    use_existing_role_assignment       = var.azure_log_analytics_workspace.use_existing_role_assignment
     use_existing_workspace             = var.azure_log_analytics_workspace.use_existing_workspace
     linked_storage_account             = var.azure_log_analytics_workspace.linked_storage_account
   }
 
   // Should be set as an environment variable 
-  azure_log_analytics_creds = {
-    AAD_CLIENT_ID     = var.azure_log_analytics_creds.AAD_CLIENT_ID
-    AAD_CLIENT_SECRET = var.azure_log_analytics_creds.AAD_CLIENT_SECRET
-    AAD_TENANT_ID     = var.azure_log_analytics_creds.AAD_TENANT_ID
-    AAD_PRINCIPAL_ID  = var.azure_log_analytics_creds.AAD_PRINCIPAL_ID
-  }
+  azure_log_analytics_creds = var.azure_log_analytics_creds
 
   subnet_id = var.subnet_id
 
